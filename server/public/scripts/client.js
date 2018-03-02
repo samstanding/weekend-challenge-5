@@ -12,8 +12,11 @@ app.config(function ($routeProvider) {
 
 const searchController = app.controller('SearchController', ['SwapService', function (SwapService) {
     let self = this;
-    console.log('in search controller');
     self.searchClick = SwapService.searchClick;
+
+    self.searchResults = SwapService.searchResults;
+    console.log( self.searchResults);
+    
     
 
 }]);
@@ -31,6 +34,8 @@ app.service ('SwapService', ['$http', function ($http) {
     let swapi = 'https://swapi.co/api/';
     let search = '/?search=';
 
+    let searchResults = {list:[]};
+
     self.searchClick = function (text, input) {
         console.log(text, input);
         $http({
@@ -38,9 +43,11 @@ app.service ('SwapService', ['$http', function ($http) {
             url:`${swapi}${input}${search}${text}`
         }).then(function (response) {
             console.log(response.data.results);
+            searchResults.list = response.data.results
         }).catch(function (error) {
             console.log('error on search:', error);
         })
     }
 
-}])
+}]);
+
