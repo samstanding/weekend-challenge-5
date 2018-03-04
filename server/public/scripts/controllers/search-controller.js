@@ -5,7 +5,7 @@ const searchController = app.controller('SearchController', ['SwapService', func
 
     self.searchResults = SwapService.searchResults;
 
-    
+    self.makeFavorite = SwapService.makeFavorite;
     
     // self.species = SwapService.searchResultsSpecies;
     

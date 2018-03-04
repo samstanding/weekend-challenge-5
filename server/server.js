@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 
 const mongoose = require('mongoose');
-const databaseUrl = 'mongodb://localhost:27017/games';
+const databaseUrl = 'mongodb://localhost:27017/swapi';
 
 mongoose.connection.on('connected', function () {
     console.log('mongoose connected to: ', databaseUrl);

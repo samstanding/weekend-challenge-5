@@ -1,6 +1,10 @@
 const faveController = app.controller('FaveController', ['SwapService', function (SwapService) {
     let self = this;
-    console.log('in fave controller');
+
+    self.getFaves = SwapService.getFaves;
+    self.getFaves();
+
+    self.faves = SwapService.faves;
 
 
 }]);

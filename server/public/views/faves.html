@@ -1,1 +1,13 @@
 <h2>Favorites</h2>
+
+<div ng-repeat="character in fc.faves.list" >
+     <!-- for characters: -->
+     <p> {{character.name}}  {{character.birth_year}} <a href="{{character.species}}">{{character.species}} </a> 
+        <!-- for planets -->
+         {{character.climate}} <a href="{{character.residents}}">{{character.residents}} </a> 
+         <!-- for species -->
+         {{character.language}} {{character.average_lifespan}} <a href="{{character.homeworld}}">{{character.homeword}} </a>
+         <!-- for starships -->
+        {{character.model}} {{character.manufacturer}} <a href="{{character.pilots}}">{{character.pilots}} </a>
+        <!-- for vehicles -->
+</div>

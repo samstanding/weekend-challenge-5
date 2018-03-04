@@ -7,6 +7,7 @@ app.service ('SwapService', ['$http', function ($http) {
     self.searchObject = {list:[]};
     self.searchResults = {list:[]};
     // self.searchResultsSpecies = {list:[]};
+    self.faves = {list: []};
 
     self.searchClick = function (text, input) {
         $http({
@@ -34,6 +35,43 @@ app.service ('SwapService', ['$http', function ($http) {
     //     })
     // }
 
+    self.makeFavorite = function (character) {
+        $http({
+            method: 'POST',
+            url: '/sw',
+            data: 
+            {
+                name: character.name,
+                birth_year:  character.birth_year,
+                species:  character.species,
+                climate: character.climate, 
+                residents: character.residents,
+                language: character.language,
+                average_lifespan: character.average_lifespan,
+                homeworld: character.homeworld,
+                model: character.model,
+                manufacturer: character.manufacturer,
+                pilots: character.pilots
+            }
+        }).then(function (response) {
+            self.getFaves();
+        }).catch(function (error) {
+            console.log('error on post: ', error);
+        })
+    }
+
+    self.getFaves = function () {
+        $http({
+            method:'GET',
+            url:'/sw'
+        }).then(function (response) {
+            console.log(response.data);
+            self.faves.list = response.data;
+        }).catch(function (error) {
+            console.log('error on fave get: ',error);
+            
+        })
+    }
     
 
 }]);
