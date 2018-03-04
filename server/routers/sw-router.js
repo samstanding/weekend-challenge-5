@@ -23,11 +23,14 @@ const FaveSchema = new mongoose.Schema (
         model: String,
         manufacturer: String,
         pilots: String,
-        commnets:[CommentSchema]
+        comments:[CommentSchema]
     }
 )
 
+const Comment = mongoose.model('Comment', CommentSchema, 'swapi');
+
 const Fave = mongoose.model('Fave', FaveSchema, 'swapi');
+
 
 router.post('/', function (req, res) {
     let newFave = new Fave (req.body);
@@ -67,5 +70,27 @@ router.delete('/:id', function (req, res) {
         }
     )
 });
+
+router.put('/:id', function (req, res) {
+    let id = req.params.id;
+    let newComment = new Comment (req.body);
+    Fave.findByIdAndUpdate(
+        {
+            "_id": id
+        }, 
+        {$push: {comments: newComment}},
+        (error, doc) => {
+           if (error) {
+               console.log('error on comment put: ', error);
+               res.sendStatus(500);
+           } else {
+               res.sendStatus(201);
+               console.log('send comment to: ', id);
+           } 
+        }
+    )
+});
+
+
 
 module.exports = router;

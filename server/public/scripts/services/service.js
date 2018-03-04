@@ -12,14 +12,14 @@ app.service ('SwapService', ['$http', function ($http) {
     self.faves = {list: []};
     self.gif = {list: []};
 
+    self.newComment = {};
+
     self.searchClick = function (text, input) {
         $http({
             method:'GET',
             url:`${self.swapi}${input}${self.search}${text}`
         }).then(function (response) {
-           console.log(response.data.results);
             self.searchResults.list = response.data.results;
-            console.log(self.searchResults.list);
         }).catch(function (error) {
             console.log('error on search:', error);
         })
@@ -67,8 +67,8 @@ app.service ('SwapService', ['$http', function ($http) {
             method:'GET',
             url:'/sw'
         }).then(function (response) {
-            console.log(response.data);
             self.faves.list = response.data;
+            console.log(self.faves.list);
         }).catch(function (error) {
             console.log('error on fave get: ',error);
             
@@ -91,11 +91,23 @@ app.service ('SwapService', ['$http', function ($http) {
             method:'GET',
             url: `${self.giphy}${name}${self.giphyKeyLimit}`
         }).then(function(response) {
-            console.log(response.data.data[0].images.downsized.url);
             self.gif.list = response.data.data[0].images.downsized.url;
-            // self.getFaves();
         }).catch(function (error) {
             console.log('error on gif get: ', error);
         })
+    }
+
+    self.sendComment = function (newComment, id) {
+        $http({
+            method:'PUT',
+            url:`/sw/${id}`,
+            data: newComment
+        }).then(function (response) {
+            console.log('successfully sent comment');
+            self.getFaves();
+            }).catch(function (errror) {
+            console.log('error on send comment: ', error);
+        })
+
     }
 }]);

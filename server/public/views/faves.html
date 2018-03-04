@@ -8,11 +8,19 @@
                  {{character.climate}} 
                  <!-- for species -->
                  {{character.language}} {{character.average_lifespan}}
+                 <!-- for vehicles and ships -->
                 {{character.model}} {{character.manufacturer}} 
-                <!-- for vehicles -->
+                
         
                  <label>Remove Favroite: </label> <md-button ng-click = "fc.removeFave(character._id)" class="md-icon-button md-accent" aria-label="Favorite">
                         <i class="material-icons">favorite</i></md-button> 
+                        <md-button ng-hide="leaveComment" ng-click="leaveComment=true"> <i class="material-icons">comment</i></md-button>
+                        <form ng-show="leaveComment" ng-model="fc.newComment">
+                            <input type="text" ng-model="fc.newComment[character.name].author" placeholder="your name">
+                            <textarea ng-model="fc.newComment[character.name].comments" placeholder="leave your comment"></textarea>
+                            <md-button ng-click="leaveComment=false"><i class="material-icons">clear</i> </md-button>
+                            <md-button ng-click="fc.sendComment(fc.newComment[character.name], character._id); leaveComment=false"><i class="material-icons">send</i></md-button>
+                        </form>
                     </md-card>   
             </div>
         </md-content>

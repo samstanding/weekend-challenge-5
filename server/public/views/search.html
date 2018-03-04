@@ -9,7 +9,7 @@
 <option value="vehicles">Vehicles</option> 
 </select>
 <input type="text" ng-model="searchText">
-<md-button class="md-raised md-primary" ng-click="sc.searchClick(searchText, input)">Search</md-button>
+<md-button class="md-raised md-primary" ng-click="sc.searchClick(searchText, input); searchText = '' ">Search</md-button>
 
 <md-content layout="row" layout-wrap>
 

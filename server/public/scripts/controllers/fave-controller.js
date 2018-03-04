@@ -11,6 +11,9 @@ const faveController = app.controller('FaveController', ['SwapService', function
 
     self.gif = SwapService.gif;
 
+    self.newComment = SwapService.newComment;
+    self.sendComment = SwapService.sendComment;
+
     
 
 
