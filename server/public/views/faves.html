@@ -1,14 +1,20 @@
-<h2>Favorites</h2>
+<h2>Your Favorites</h2>
 
-<div ng-repeat="character in fc.faves.list" >
-     <!-- for characters: -->
-     <p> {{character.name}}  {{character.birth_year}} <a href="{{character.species}}">{{character.species}} </a> 
-        <!-- for planets -->
-         {{character.climate}} <a href="{{character.residents}}">{{character.residents}} </a> 
-         <!-- for species -->
-         {{character.language}} {{character.average_lifespan}} <a href="{{character.homeworld}}">{{character.homeword}} </a>
-         <!-- for starships -->
-        {{character.model}} {{character.manufacturer}} <a href="{{character.pilots}}">{{character.pilots}} </a>
-        <!-- for vehicles -->
-        <button ng-click="fc.removeFave(character._id)">Remove Favorite</button>
-</div>
+<md-content layout="row" layout-wrap>
+        <div flex="25" ng-repeat="character in fc.faves.list" >
+            <md-card>
+            <!-- for characters: -->
+             {{character.name}}  {{character.birth_year}} <a href="{{character.species}}">{{character.species}} </a> 
+                <!-- for planets -->
+                 {{character.climate}} <a href="{{character.residents}}">{{character.residents}} </a> 
+                 <!-- for species -->
+                 {{character.language}} {{character.average_lifespan}} <a href="{{character.homeworld}}">{{character.homeword}} </a>
+                 <!-- for starships -->
+                {{character.model}} {{character.manufacturer}} <a href="{{character.pilots}}">{{character.pilots}} </a>
+                <!-- for vehicles -->
+        
+                 <label>Remove Favroite: </label> <md-button ng-click = "fc.removeFave(character._id)" class="md-icon-button md-accent" aria-label="Favorite">
+                        <i class="material-icons">favorite</i></md-button> 
+                    </md-card>   
+            </div>
+        </md-content>

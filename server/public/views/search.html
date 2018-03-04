@@ -11,9 +11,11 @@
 <input type="text" ng-model="searchText">
 <md-button class="md-raised md-primary" ng-click="sc.searchClick(searchText, input)">Search</md-button>
 
-<div ng-repeat="character in sc.searchResults.list" >
+<md-content layout="row" layout-wrap>
+<div flex="25" ng-repeat="character in sc.searchResults.list" >
+    <md-card>
     <!-- for characters: -->
-    <p> {{character.name}}  {{character.birth_year}} <a href="{{character.species}}">{{character.species}} </a> 
+     {{character.name}}  {{character.birth_year}} <a href="{{character.species}}">{{character.species}} </a> 
         <!-- for planets -->
          {{character.climate}} <a href="{{character.residents}}">{{character.residents}} </a> 
          <!-- for species -->
@@ -22,6 +24,8 @@
         {{character.model}} {{character.manufacturer}} <a href="{{character.pilots}}">{{character.pilots}} </a>
         <!-- for vehicles -->
 
-          <md-button ng-click = "sc.makeFavorite(character)" class="md-icon-button md-accent" aria-label="Favorite">
-                <i class="material-icons">favorite</i></md-button> </p>
+         <label>Add Favroite: </label> <md-button ng-click = "sc.makeFavorite(character)" class="md-icon-button md-accent" aria-label="Favorite">
+                <i class="material-icons">favorite</i></md-button> 
+            </md-card>   
     </div>
+</md-content>
