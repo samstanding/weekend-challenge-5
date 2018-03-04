@@ -4,17 +4,20 @@ app.service ('SwapService', ['$http', function ($http) {
     self.swapi = 'https://swapi.co/api/';
     self.search = '/?search=';
 
-    self.searchObject = {list:[]};
+    self.giphy = 'http://api.giphy.com/v1/gifs/search?q=';
+    self.giphyKeyLimit = '&api_key=yXNVgUk05pFMQDWErgzYfFpYntraXL1U&limit=1';
+
     self.searchResults = {list:[]};
-    // self.searchResultsSpecies = {list:[]};
+    self.searchResultsSpecies = {list:[]};
     self.faves = {list: []};
+    self.gif = {list: []};
 
     self.searchClick = function (text, input) {
         $http({
             method:'GET',
             url:`${self.swapi}${input}${self.search}${text}`
         }).then(function (response) {
-            // self.getSpecies(response.data.results[0].species);
+            // self.getSpecies(response.data.results.species);
             self.searchResults.list = response.data.results;
             console.log(self.searchResults.list);
         }).catch(function (error) {
@@ -28,8 +31,7 @@ app.service ('SwapService', ['$http', function ($http) {
     //         url: `${species}`
     //     }).then(function (response) {
     //         self.searchResultsSpecies = response.data.name;
-    //         self.searchResults =  self.searchObject.list; 
-    //         console.log(self.searchResults);
+    //         console.log(self.searchResultsSpecies);
     //     }).catch(function (error) {
     //         console.log('error on species: ', error);
     //     })
@@ -84,4 +86,16 @@ app.service ('SwapService', ['$http', function ($http) {
         })
     }
 
+    self.getGif = function (name) {
+        $http({
+            method:'GET',
+            url: `${self.giphy}${name}${self.giphyKeyLimit}`
+        }).then(function(response) {
+            console.log(response.data.data[0].images.downsized.url);
+            self.gif.list = response.data.data[0].images.downsized.url;
+            // self.getFaves();
+        }).catch(function (error) {
+            console.log('error on gif get: ', error);
+        })
+    }
 }]);

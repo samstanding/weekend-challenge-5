@@ -1,16 +1,14 @@
 <h2>Your Favorites</h2>
 
 <md-content layout="row" layout-wrap>
-        <div flex="25" ng-repeat="character in fc.faves.list" >
-            <md-card>
+        <div flex="25" ng-repeat="character in fc.faves.list" ng-cloak >
+            <md-card  ng-click = "fc.getGif(character.name);" >
             <!-- for characters: -->
-             {{character.name}}  {{character.birth_year}} <a href="{{character.species}}">{{character.species}} </a> 
-                <!-- for planets -->
-                 {{character.climate}} <a href="{{character.residents}}">{{character.residents}} </a> 
+             {{character.name}}  {{character.birth_year}} 
+                 {{character.climate}} 
                  <!-- for species -->
-                 {{character.language}} {{character.average_lifespan}} <a href="{{character.homeworld}}">{{character.homeword}} </a>
-                 <!-- for starships -->
-                {{character.model}} {{character.manufacturer}} <a href="{{character.pilots}}">{{character.pilots}} </a>
+                 {{character.language}} {{character.average_lifespan}}
+                {{character.model}} {{character.manufacturer}} 
                 <!-- for vehicles -->
         
                  <label>Remove Favroite: </label> <md-button ng-click = "fc.removeFave(character._id)" class="md-icon-button md-accent" aria-label="Favorite">
@@ -18,3 +16,4 @@
                     </md-card>   
             </div>
         </md-content>
+        <img ng-src="{{fc.gif.list}}">

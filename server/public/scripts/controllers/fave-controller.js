@@ -7,5 +7,11 @@ const faveController = app.controller('FaveController', ['SwapService', function
 
     self.removeFave = SwapService.removeFave;
 
+    self.getGif = SwapService.getGif;
+
+    self.gif = SwapService.gif;
+
+    
+
 
 }]);
