@@ -3,8 +3,9 @@ const faveController = app.controller('FaveController', ['SwapService', function
 
     self.getFaves = SwapService.getFaves;
     self.getFaves();
-
     self.faves = SwapService.faves;
+
+    self.removeFave = SwapService.removeFave;
 
 
 }]);

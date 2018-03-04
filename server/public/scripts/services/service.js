@@ -73,5 +73,15 @@ app.service ('SwapService', ['$http', function ($http) {
         })
     }
     
+    self.removeFave = function (id) {
+        $http({
+            method:'DELETE',
+            url:`/sw/${id}`
+        }).then(function (response) {
+            self.getFaves();
+        }).catch(function (error) {
+            console.log('error on fave delete: ', error);
+        })
+    }
 
 }]);

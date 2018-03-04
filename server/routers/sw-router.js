@@ -45,5 +45,19 @@ router.get('/', function (req, res) {
     })
 });
 
+router.delete('/:id', function (req, res) {
+    let id = req.params.id;
+    Fave.findByIdAndRemove(
+        {"_id": id },
+        (error, removedFave) => {
+            if (error) {
+                console.log('error on delete: ', error);
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(200);
+            }
+        }
+    )
+});
 
 module.exports = router;
