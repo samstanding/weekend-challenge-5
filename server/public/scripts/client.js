@@ -1,4 +1,6 @@
-const app = angular.module('myApp', ['ngRoute']);
+const app = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
+
+
 
 app.config(function ($routeProvider) {
     $routeProvider.when('/search', {
@@ -10,6 +12,7 @@ app.config(function ($routeProvider) {
     }).otherwise({ redirectTo: '/'});
 });
 
+// import {MatButtonModule} from '@angular/material/button';
 
 
 
