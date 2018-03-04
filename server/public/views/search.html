@@ -1,15 +1,16 @@
 <h2>Search</h2>
 
-<div>
-    <select ng-model="input">
+<select ng-model="input">
+<option value="" disabled selected>Select</option>
 <option value="people">People</option>
 <option value="planets">Planets</option>
 <option value="species">Species</option>
 <option value="starships">Starships</option>
 <option value="vehicles">Vehicles</option> 
 </select>
-<input type="text" ng-model="searchText"><button ng-click="sc.searchClick(searchText, input)">Search!</button>
-</div>
+<input type="text" ng-model="searchText">
+<md-button class="md-raised md-primary" ng-click="sc.searchClick(searchText, input)">Search</md-button>
+
 <div ng-repeat="character in sc.searchResults.list" >
     <!-- for characters: -->
     <p> {{character.name}}  {{character.birth_year}} <a href="{{character.species}}">{{character.species}} </a> 
@@ -21,5 +22,6 @@
         {{character.model}} {{character.manufacturer}} <a href="{{character.pilots}}">{{character.pilots}} </a>
         <!-- for vehicles -->
 
-          <button ng-click = "sc.makeFavorite(character)">Favorite</button> </p>
+          <md-button ng-click = "sc.makeFavorite(character)" class="md-icon-button md-accent" aria-label="Favorite">
+                <i class="material-icons">favorite</i></md-button> </p>
     </div>
