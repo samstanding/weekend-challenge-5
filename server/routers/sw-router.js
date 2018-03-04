@@ -3,6 +3,13 @@ const router = express.Router();
 
 const mongoose = require('mongoose');
 
+const CommentSchema = new mongoose.Schema ( 
+    {
+        author: String,
+        comments: String
+    }
+)
+
 const FaveSchema = new mongoose.Schema (
     {
         name: {type: String, required: true },
@@ -15,7 +22,8 @@ const FaveSchema = new mongoose.Schema (
         homeworld: String,
         model: String,
         manufacturer: String,
-        pilots: String
+        pilots: String,
+        commnets:[CommentSchema]
     }
 )
 
