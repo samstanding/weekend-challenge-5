@@ -1,5 +1,4 @@
-const app = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
-
+const app = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'angularUtils.directives.dirPagination']);
 
 
 app.config(function ($routeProvider) {

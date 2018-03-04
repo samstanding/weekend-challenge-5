@@ -12,20 +12,25 @@
 <md-button class="md-raised md-primary" ng-click="sc.searchClick(searchText, input)">Search</md-button>
 
 <md-content layout="row" layout-wrap>
-<div flex="25" ng-repeat="character in sc.searchResults.list" >
-    <md-card>
-    <!-- for characters: -->
-     {{character.name}}  {{character.birth_year}} </a> 
-        <!-- for planets -->
-         {{character.climate}} <a href="{{character.residents}}">{{character.residents}} </a> 
-         <!-- for species -->
-         {{character.language}} {{character.average_lifespan}} <a href="{{character.homeworld}}">{{character.homeword}} </a>
-         <!-- for starships -->
-        {{character.model}} {{character.manufacturer}} <a href="{{character.pilots}}">{{character.pilots}} </a>
-        <!-- for vehicles -->
 
-         <label>Add Favroite: </label> <md-button ng-click = "sc.makeFavorite(character)" class="md-icon-button md-accent" aria-label="Favorite">
+        <div dir-paginate="character in sc.searchResults.list | orderBy:sortKey:reverse|itemsPerPage:5" class="container-fluid" flex="25">
+             <md-card>
+                <!-- for characters: -->
+            {{character.name}}  {{character.birth_year}} </a> 
+                <!-- for planets -->
+             {{character.climate}} <a href="{{character.residents}}">{{character.residents}} </a> 
+                 <!-- for species -->
+             {{character.language}} {{character.average_lifespan}} <a href="{{character.homeworld}}">{{character.homeword}} </a>
+                             <!-- for starships and vehicles -->
+            {{character.model}} {{character.manufacturer}} <a href="{{character.pilots}}">{{character.pilots}} </a>
+                <label>Add Favroite: </label> <md-button ng-click = "sc.makeFavorite(character)" class="md-icon-button md-accent" aria-label="Favorite">
                 <i class="material-icons">favorite</i></md-button> 
-            </md-card>   
-    </div>
+                </md-card>  
+            
+        </div> 
 </md-content>
+<dir-pagination-controls
+       max-size="5"
+       direction-links="false"
+       boundary-links="false" >
+    </dir-pagination-controls>

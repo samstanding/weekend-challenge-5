@@ -17,7 +17,7 @@ app.service ('SwapService', ['$http', function ($http) {
             method:'GET',
             url:`${self.swapi}${input}${self.search}${text}`
         }).then(function (response) {
-            // self.getSpecies(response.data.results.species);
+           console.log(response.data.results);
             self.searchResults.list = response.data.results;
             console.log(self.searchResults.list);
         }).catch(function (error) {
