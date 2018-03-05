@@ -8,7 +8,6 @@ app.service ('SwapService', ['$http', function ($http) {
     self.giphyKeyLimit = '&api_key=yXNVgUk05pFMQDWErgzYfFpYntraXL1U&limit=1';
 
     self.searchResults = {list:[]};
-    self.searchResultsSpecies = {list:[]};
     self.faves = {list: []};
     self.gif = {list: []};
 
@@ -55,7 +54,6 @@ app.service ('SwapService', ['$http', function ($http) {
             url:'/sw'
         }).then(function (response) {
             self.faves.list = response.data;
-            console.log(self.faves.list);
         }).catch(function (error) {
             console.log('error on fave get: ',error);
             
@@ -90,7 +88,6 @@ app.service ('SwapService', ['$http', function ($http) {
             url:`/sw/${id}`,
             data: newComment
         }).then(function (response) {
-            console.log('successfully sent comment');
             self.getFaves();
             }).catch(function (errror) {
             console.log('error on send comment: ', error);

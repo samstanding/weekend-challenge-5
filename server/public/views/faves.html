@@ -1,27 +1,28 @@
 <h2>Your Favorites</h2>
 
 <md-content layout="row" layout-wrap>
-        <div flex="25" ng-repeat="character in fc.faves.list" ng-cloak >
-            <md-card  ng-click = "fc.getGif(character.name);" >
-            <!-- for characters: -->
-             {{character.name}}  {{character.birth_year}} {{character.gender}}
-            {{character.climate}} {{character.terrain}}
-                 <!-- for species -->
-                 {{character.language}} {{character.average_lifespan}}
-                 <!-- for vehicles and ships -->
-                {{character.model}} {{character.manufacturer}} 
-                <div ng-repeat = "comment in character.comments">
-                   <strong> {{comment.author}} </strong> says {{comment.comments}}
-                </div>
-                 <md-button ng-click = "fc.removeFave(character._id)" ><i class="material-icons">clear</i></md-button> 
-                        <md-button ng-hide="leaveComment" ng-click="leaveComment=true"><i class="material-icons">comment</i></md-button>
-                        <form ng-show="leaveComment" ng-model="fc.newComment">
-                            <input type="text" ng-model="fc.newComment[character.name].author" placeholder="your name">
-                            <textarea ng-model="fc.newComment[character.name].comments" placeholder="leave your comment"></textarea>
-                            <md-button ng-click="leaveComment=false;fc.newComment[character.name] = {}" class="md-icon-button"><i class="material-icons">undo</i> </md-button>
-                            <md-button ng-click="fc.sendComment(fc.newComment[character.name], character._id); leaveComment=false; fc.newComment[character.name] = {} "><i class="material-icons">send</i></md-button>
-                        </form>
-                    </md-card>   
-            </div>
-        </md-content>
-        <img ng-src="{{fc.gif.list}}">
+    <div flex="25" ng-repeat="character in fc.faves.list"  >
+        <md-card  ng-click = "fc.getGif(character.name)"   >
+        <!-- for characters: -->
+        {{character.name}}  {{character.birth_year}} {{character.gender}}
+        <!-- for planets -->
+        {{character.climate}} {{character.terrain}}
+         <!-- for species -->
+        {{character.language}} {{character.language}}
+         <!-- for vehicles and ships -->
+        {{character.model}} {{character.manufacturer}} 
+        <div ng-repeat = "comment in character.comments">
+            <strong> {{comment.author}} </strong> says {{comment.comments}}
+        </div>
+        <md-button ng-click = "fc.removeFave(character._id)" ><i class="material-icons">clear</i></md-button> 
+            <md-button ng-hide="leaveComment" ng-click="leaveComment=true"><i class="material-icons">comment</i></md-button>
+                <form ng-show="leaveComment" ng-model="fc.newComment">
+                    <input type="text" ng-model="fc.newComment[character.name].author" placeholder="your name">
+                    <textarea ng-model="fc.newComment[character.name].comments" placeholder="leave your comment"></textarea>
+                    <md-button ng-click="leaveComment=false;fc.newComment[character.name] = {}" class="md-icon-button"><i class="material-icons">undo</i> </md-button>
+                    <md-button ng-click="fc.sendComment(fc.newComment[character.name], character._id); leaveComment=false; fc.newComment[character.name] = {} "><i class="material-icons">send</i></md-button>
+                </form>
+        </md-card>   
+    </div>
+</md-content>
+<img ng-src="{{fc.gif.list}}" alt="click a favorite!">
