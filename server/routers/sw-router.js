@@ -14,15 +14,12 @@ const FaveSchema = new mongoose.Schema (
     {
         name: {type: String, required: true },
         birth_year:  String,
-        species:  String,
+        gender:  String,
         climate: String, 
-        residents: String,
+        terrain: String,
         language: String,
-        average_lifespan: String,
-        homeworld: String,
         model: String,
         manufacturer: String,
-        pilots: String,
         comments:[CommentSchema]
     }
 )

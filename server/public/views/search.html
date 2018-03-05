@@ -16,14 +16,14 @@
         <div dir-paginate="character in sc.searchResults.list | orderBy:sortKey:reverse|itemsPerPage:5" class="container-fluid" flex="25">
              <md-card>
                 <!-- for characters: -->
-            {{character.name}}  {{character.birth_year}} </a> 
+            {{character.name}}  {{character.birth_year}} {{character.gender}}
                 <!-- for planets -->
-             {{character.climate}} <a href="{{character.residents}}">{{character.residents}} </a> 
+             {{character.climate}} {{character.terrain}}
                  <!-- for species -->
              {{character.language}} {{character.average_lifespan}} <a href="{{character.homeworld}}">{{character.homeword}} </a>
-                             <!-- for starships and vehicles -->
+                 <!-- for starships and vehicles -->
             {{character.model}} {{character.manufacturer}} <a href="{{character.pilots}}">{{character.pilots}} </a>
-                <label>Add Favroite: </label> <md-button ng-click = "sc.makeFavorite(character)" class="md-icon-button md-accent" aria-label="Favorite">
+                <md-button ng-click = "sc.makeFavorite(character)" class="md-icon-button md-accent" aria-label="Favorite">
                 <i class="material-icons">favorite</i></md-button> 
                 </md-card>  
             
@@ -31,6 +31,6 @@
 </md-content>
 <dir-pagination-controls
        max-size="5"
-       direction-links="true"
+       direction-links="false"
        boundary-links="false" >
     </dir-pagination-controls>

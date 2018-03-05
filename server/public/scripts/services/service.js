@@ -19,23 +19,12 @@ app.service ('SwapService', ['$http', function ($http) {
             method:'GET',
             url:`${self.swapi}${input}${self.search}${text}`
         }).then(function (response) {
+            console.log(response.data.results);
             self.searchResults.list = response.data.results;
         }).catch(function (error) {
             console.log('error on search:', error);
         })
     }
-
-    // self.getSpecies = function (species) {
-    //     $http({
-    //         method:'GET',
-    //         url: `${species}`
-    //     }).then(function (response) {
-    //         self.searchResultsSpecies = response.data.name;
-    //         console.log(self.searchResultsSpecies);
-    //     }).catch(function (error) {
-    //         console.log('error on species: ', error);
-    //     })
-    // }
 
     self.makeFavorite = function (character) {
         $http({
@@ -45,15 +34,13 @@ app.service ('SwapService', ['$http', function ($http) {
             {
                 name: character.name,
                 birth_year:  character.birth_year,
+                gender: character.gender,
                 species:  character.species,
                 climate: character.climate, 
-                residents: character.residents,
+                terrain: character.terrain,
                 language: character.language,
-                average_lifespan: character.average_lifespan,
-                homeworld: character.homeworld,
                 model: character.model,
                 manufacturer: character.manufacturer,
-                pilots: character.pilots
             }
         }).then(function (response) {
             self.getFaves();
